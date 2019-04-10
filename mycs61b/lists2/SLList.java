@@ -41,22 +41,26 @@ public class SLList {
  	/** Adds x to the end of the list. */
  	public void addLast(int x) {
  		size = size + 1; 		
-// ===================================================
- 		
- 		while (sentinel.next != null) {
- 			sentinel = sentinel.next;
+
+ 		IntNode p = sentinel;
+ 		/* Advance p to the end of the list. */
+ 		while (p.next != null) {
+ 			p = p.next;
  		}
 
- 		sentinel.next = new IntNode(x, null);
- 		// ===========================================
- 		// IntNode p = sentinel;
- 		// /* Advance p to the end of the list. */
- 		// while (p.next != null) {
- 		// 	p = p.next;
+ 		p.next = new IntNode(x, null);
+ 		// ===========================================================
+ 		// ##########################
+ 		// ##### Question :    ######
+ 		// ##########################
+ 		// 什麼時候要用pointer?為什麼要用pointer?
+ 		// =========================================================
+ 		// while (sentinel.next != null) {
+ 		// 	sentinel = sentinel.next;
  		// }
+ 		// sentinel.next = new IntNode(x, null);
+ 		// ===========================================================
 
- 		// p.next = new IntNode(x, null);
- 		// ==============================================
  	}
  	
  	/** Returns the size of the list. */
