@@ -49,7 +49,7 @@ public class SLList {
  		}
 
  		p.next = new IntNode(x, null);
- 		// ===========================================================
+ 		// =========================================================== > 1
  		// ##########################
  		// ##### Question :    ######
  		// ##########################
@@ -59,14 +59,29 @@ public class SLList {
  		// 	sentinel = sentinel.next;
  		// }
  		// sentinel.next = new IntNode(x, null);
- 		// ===========================================================
+ 		// =========================================================== < 2
 
  	}
- 	
+// ====================================================================== > 1
  	/** Returns the size of the list. */
  	public int size() {
  		return size;
  	}
+ 	// ===================================================================
+ 	/** another size method*/
+ 	/** Returns the size of the list starting at IntNode p. */
+// private static int size(IntNode p) {
+//     if (p.next == null) {
+//         return 1;
+//     }
+
+//     return 1 + size(p.next);
+// }
+// public int size() {
+//     return size(first);
+// }
+ 	// ================================================================ < 2
+
 
 	public static void main(String[] args) {
  		/* Creates a list of one integer, namely 10 */
@@ -74,5 +89,6 @@ public class SLList {
  		L.addLast(15);
  		L.addLast(20);
  		System.out.println(L.size());
+ 		
  	}
 }
