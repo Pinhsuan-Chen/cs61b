@@ -1,6 +1,11 @@
 /** An SLList is a list of integers, which hides the terrible truth
    * of the nakedness within. */
 public class SLList {	
+	/* The first item (if it exists) is at sentinel.next. */
+	private IntNode sentinel;
+	private int size;
+	private IntNode last; 
+
 	private static class IntNode {
 		public int item;
 		public IntNode next;
@@ -11,9 +16,7 @@ public class SLList {
 		}
 	} 
 
-	/* The first item (if it exists) is at sentinel.next. */
-	private IntNode sentinel;
-	private int size;
+	
 
 	/** Creates an empty SLList. */
 	public SLList() {
@@ -61,6 +64,13 @@ public class SLList {
  		// sentinel.next = new IntNode(x, null);
  		// =========================================================== < 2
 
+ 	}
+
+ 	/**faster addLast*/
+ 	public void addLast(int x){
+ 		last.next = new IntNode(x, null);
+ 		last = last.next;
+ 		size += 1;
  	}
 // ====================================================================== > 1
  	/** Returns the size of the list. */
