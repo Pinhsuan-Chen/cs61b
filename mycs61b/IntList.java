@@ -21,6 +21,7 @@ public class IntList{
         IntList L = new IntList(5, null);
         L.rest = new IntList(7, null);
         L.rest.rest = new IntList(9, null);
-        System.out.println(dincrList(L,3).get(2));
+        System.out.println("hi"+dincrList(L,3).get(2));
+        System.out.println("hi");
     }
 }
