@@ -1,5 +1,6 @@
-import static org.junit.Assert.*;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class DogTest {    
     @Test
@@ -13,4 +14,5 @@ public class DogTest {
         Dog d = new Dog(20);
         assertEquals("bark", d.noise());
     }
+
 }
