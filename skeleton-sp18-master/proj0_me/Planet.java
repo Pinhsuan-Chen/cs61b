@@ -26,6 +26,9 @@ public class Planet{
         this.mass = p.mass;
         this.imgFileName = p.imgFileName;
     }
+    private public calcDistance(Planet p2){
+
+    }
 
 
 }
