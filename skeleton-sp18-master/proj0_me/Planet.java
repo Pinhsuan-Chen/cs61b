@@ -31,8 +31,8 @@ public class Planet{
 
 //    calculates the distance between two Planets
     public double calcDistance(Planet p2){
-        double dx = this.xxPos-p2.xxPos;
-        double dy = this.yyPos-p2.yyPos;
+        double dx = p2.xxPos-this.xxPos;
+        double dy = p2.yyPos-this.yyPos;
         return Math.sqrt(dx*dx + dy*dy);
         //return Math.sqrt(Math.pow(this.xxPos-p2.xxPos,2)+Math.pow(this.yyPos-p2.yyPos,2));
 
@@ -41,6 +41,49 @@ public class Planet{
     public double calcForceExertedBy(Planet p2){
         double r = this.calcDistance(p2);
         return G*this.mass*p2.mass/(r*r);
+
+    }
+    public double calcForceExertedByX(Planet p2){
+        double r = this.calcDistance(p2);
+        double f = this.calcForceExertedBy(p2);
+        double dx = p2.xxPos-this.xxPos;
+        return f*dx/r;
+    }
+    public double calcForceExertedByY(Planet p2){
+        double r = this.calcDistance(p2);
+        double f = this.calcForceExertedBy(p2);
+        double dy = p2.yyPos-this.yyPos;
+        return f*dy/r;
+    }
+
+    public double calcNetForceExertedByX(Planet[] ps){
+        double netfx = 0;
+        for(Planet p : ps){
+            if(this.equals(p)){
+                continue;
+            }
+            netfx += this.calcForceExertedByX(p);
+        }
+        return netfx;
+    }
+
+    public double calcNetForceExertedByY(Planet[] ps){
+        double netfy = 0;
+        for(Planet p : ps){
+            if(this.equals(p)){
+                continue;
+            }
+            netfy += this.calcForceExertedByY(p);
+        }
+        return netfy;
+    }
+    public void update(double t, double Fx, double Fy){
+        double Ax = Fx / this.mass;
+        double Ay = Fy / this.mass;
+        this.xxVel+= t*Ax;
+        this.yyVel+= t*Ay;
+        this.xxPos+= t*xxVel;
+        this.yyPos+= t*yyVel;
 
 
     }
