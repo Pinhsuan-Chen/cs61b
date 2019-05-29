@@ -1,3 +1,6 @@
+/**Your Planet class should NOT have a main method.
+Also, all methods should be non-static.*/
+
 public class Planet{
    /** determine instance variables */
     public double xxPos;
@@ -17,7 +20,8 @@ public class Planet{
                       this.mass = m;
                       this.imgFileName = img;
                   }
-                  
+// copy constructor 
+// don't know why I have to write it
     public Planet(Planet p) {
         this.xxPos = p.xxPos;
         this.yyPos = p.yyPos;
