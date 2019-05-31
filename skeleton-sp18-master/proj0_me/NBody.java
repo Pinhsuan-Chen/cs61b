@@ -11,7 +11,7 @@ public class NBody {
         return radius;
 
     }
-    public static Planet[] readPlanets(String filePath){
+    public static Planet[] readplanets(String filePath){
         In in = new In(filePath);
         int number = in.readInt();
         double radius = in.readDouble();
@@ -36,20 +36,52 @@ public class NBody {
         double dt = Double.parseDouble(args[1]);
         String filename = args[2];
         double radius = readRadius(filename);
-        Planet[] planets = readPlanets(filename);
+        Planet[] planets = readplanets(filename);
 
-
-        //  draw background
-        StdDraw.setScale(0-radius, radius);
-        StdDraw.clear();
 
         String imgPath = "./images/starfield.jpg";
-        StdDraw.picture(0,0,imgPath);
+
+        StdDraw.enableDoubleBuffering();
+        StdDraw.setScale(-radius, radius);
+        StdDraw.clear();
+        StdDraw.picture(0, 0, imgPath);
         StdDraw.show();
 
-        for(Planet p: planets){
+        for (Planet p : planets) {
             p.draw();
         }
+
+        for (double time = 0; time <= T; time += dt) {
+            double[] xForces = new double[planets.length];
+            double[] yForces = new double[planets.length];
+            for (int i = 0; i < planets.length; i++) {
+                xForces[i] = planets[i].calcNetForceExertedByX(planets);
+                yForces[i] = planets[i].calcNetForceExertedByY(planets);
+            }
+            for (int i = 0; i < planets.length; i++) {
+                planets[i].update(dt, xForces[i], yForces[i]);
+            }
+            // StdDraw.clear();
+            StdDraw.picture(0, 0, imgPath);
+            for (int i = 0; i < planets.length; i++) {
+                planets[i].draw();
+            }
+            StdDraw.show();
+            int pauseTime = 1000;
+            StdDraw.pause(pauseTime);
+        }
+
+        StdOut.printf("%d\n", planets.length);
+        StdOut.printf("%.2e\n", radius);
+        for (Planet aPArray : planets) {
+            StdOut.printf("%11.4e %11.4e %11.4e %11.4e %11.4e %12s\n",
+                    aPArray.xxPos, aPArray.yyPos, aPArray.xxVel, aPArray.yyVel, aPArray.mass, aPArray.imgFileName);
+        }
+
+
+
+
+
 
     }
 
